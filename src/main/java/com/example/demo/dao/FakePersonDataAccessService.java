@@ -26,13 +26,12 @@ public class FakePersonDataAccessService implements PersonDao{
 
     @Override
     public Optional<Person> selectPersonById(UUID id) {
-        // TODO Auto-generated method stub
+   
         return DB.stream().filter(person -> person.getId().equals(id)).findFirst();
     }
 
     @Override
     public int deletePersonById(UUID id) {
-        // TODO Auto-generated method stub
         Optional<Person> personMaybe = selectPersonById(id);
         if(personMaybe.isEmpty()) {
             return 0;
@@ -44,7 +43,6 @@ public class FakePersonDataAccessService implements PersonDao{
 
     @Override
     public int updatePersonById(UUID id, Person update) {
-        // TODO Auto-generated method stub
         return selectPersonById(id).map(person -> {
             int indexOfPersonToUpdate = DB.indexOf(person);
             if (indexOfPersonToUpdate >= 0) {
