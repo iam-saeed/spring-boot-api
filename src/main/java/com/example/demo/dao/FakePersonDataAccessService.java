@@ -4,9 +4,8 @@ import com.example.demo.model.Person;
 
 import org.springframework.stereotype.Repository;
 
-import java.util.UUID;
-import java.util.List;
-import java.util.ArrayList;
+import java.util.*;
+import java.util.Collection.stream;
 
 
 @Repository("fakeDao")
@@ -23,5 +22,23 @@ public class FakePersonDataAccessService implements PersonDao{
     @Override
     public List<Person> selectAllPeople(){
         return DB;
+    }
+
+    @Override
+    public Optional<Person> selectPersonById(UUID id) {
+        // TODO Auto-generated method stub
+        return DB.stream().filter(person -> person.getId().equals(id)).findFirst();
+    }
+
+    @Override
+    public int deletePersonById(UUID id) {
+        // TODO Auto-generated method stub
+        return 0;
+    }
+
+    @Override
+    public int updatePersonById(UUID id, Person person) {
+        // TODO Auto-generated method stub
+        return 0;
     }
 }
